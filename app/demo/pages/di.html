@@ -1,0 +1,63 @@
+<div>
+    <h4>${title}</h4>
+    <br>
+    <div class="row-fluid">
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>@inject</strong></div>
+            <div class="panel-body">
+                TestService.ts:
+                <pre>
+                    export default class TestService{
+    
+                        static instancesCounter = 0;
+
+                        constructor(){
+                            TestService. <var>instancesCounter</var> = TestService. <var>instancesCounter</var> +1;
+                        }
+
+                        displayInstancesCounter():void{
+                            alert(`There are ${TestService. <var>instancesCounter</var>} instances of TestService !`);
+                        }
+                    }
+                </pre>
+                MyPage.ts:
+                <pre>
+                    import {TestService} from './TestService';
+                    import {inject} from 'Injector'
+
+                    @inject(TestService)
+                    export default class MyPage{
+                        
+                        testServiceInstance:TestService;
+
+                        constructor(testService:any){
+                            this.testServiceInstance = testService;
+
+                            this.testServiceInstance.displayInstancesCounter(); // 1 instance
+
+                            let dummyInstance =  new TestService();
+                            dummyInstance.displayInstancesCounter(); // 2 instances
+                        }
+                        
+                    }
+                </pre>
+                MyOtherPage.ts:
+                <pre>
+                    import {TestService} from './TestService';
+                    import {inject} from 'Injector'
+                    export default class MyOtherPage{
+                        testServiceInstance:TestService;
+
+                        constructor(testService:any){
+                            this.testServiceInstance = testService;
+
+                            this.testServiceInstance.displayInstancesCounter(); // 2 instance
+                        }
+                    }
+                </pre>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div>
+    <h4>${title}</h4>
+    <br>
+    <div class="row-fluid">        
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong> Router </strong></div>
+            <div class="panel-body">                
+            </div>
+            <div class="panel-footer">
+                ViewModel :
+                <pre>
+                    import {Router,Route} from 'Router';
+                    export default class MyPage{
+
+                        router:Router;
+
+                        constructor(){
+                            this.router =  new Router();
+                            this.router.addRoute(new Route(['','home'],'app/path/to/home','Home'));
+                            this.router.addRoute(new Route(['about'],'app/path/to/about','About'));
+                        }
+                    }
+                </pre>
+
+                View:
+                <pre>
+                    &lt;ul class=&quot;nav nav-pills&quot; for.bind=&quot;route of router.routes&quot;&gt;
+                        &lt;li role=&quot;presentation&quot; class.bind=&quot;route.isActive ? 'active':''&quot;&gt;
+                            &lt;a href.bind=&quot;route.path&quot;&gt;${<var>route.title</var>}&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                    ......
+                    &lt;div view-port.bind='router'&gt;&lt;/div&gt;
+                </pre>
+
+            </div>
+        </div>
+    </div>
+</div>

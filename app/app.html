@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="app/demo/assets/Typy_LOGO.png" width="100px">
+            </div>
+            <div class="col-sm-8">
+                <h2>${title}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <ul class="nav nav-pills" for.bind="route of router.routes">
+                <li role="presentation" class.bind="route.isActive ? 'active':''">
+                    <a href.bind="route.path">${route.title}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel-body">
+            <div view-port.bind='router'></div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Typy !</title>
+  <link rel="stylesheet" href="jspm_packages/github/twbs/bootstrap@3.3.6/css/bootstrap.min.css">  
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+  <script>    
+    System.import('lib/Application.ts').then(function(app){      
+      app.Application.startUp('app/app')
+    });
+  </script>
+</head>
+<body>
+  <div id="main-host" class="container">     
+  </div>
+</body>
+</html>

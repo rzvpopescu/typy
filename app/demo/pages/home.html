@@ -1,0 +1,183 @@
+<div>    
+    <br>
+    <div class="row-fluid">
+        
+  <div class="panel panel-info">
+            <div class="panel-heading"><strong>About</strong></div>
+            <div class="panel-body">
+                <p><a href="https://github.com/rzvpopescu/typy"> Typy</a> is an experimental TypeScript MVVM framework.</p>
+                <p>Feel free to submit any observation or issue.</p>
+                <p>Typy is not intended to be used in production, only for educational purposes.</p> 
+                <p><strong>Github address: <a href="https://github.com/rzvpopescu/typy" target="_blank">https://github.com/rzvpopescu/typy</a></strong><p>
+            </div>
+    </div>
+
+
+<div class="panel panel-info">
+            <div class="panel-heading"><strong>Installation</strong></div>
+            <div class="panel-body">
+                <p>step 1<p>
+                <p>step 1<p>
+                <p>step 1<p>
+            </div>
+    </div>
+
+<div class="panel panel-info">
+            <div class="panel-heading"><strong>Example</strong></div>
+            <div class="panel-body">
+                
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value.bind="person.name" id="name" placeholder="name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="age" class="col-sm-2 control-label">Age</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" value.bind="person.age" id="age" placeholder="20">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender" class="col-sm-2 control-label">Gender</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="gender" value.bind="person.gender" for.bind="gender of genders">
+                        <option value.bind="gender">${gender}</option>                                        
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="empl" class="col-sm-2 control-label">Employeed</label>
+                <div class="col-sm-10">
+                   <div class="checkbox">
+                    <label><input type="checkbox" checked.bind="person.employeed" ><span text.bind="person.employeed ? '(Employeed)':'(Unemployeed)'"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" visible.bind="person.employeed">
+                <label for="emply" class="col-sm-2 control-label">Employer</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value.bind="person.employer" id="emply" placeholder="employer">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button class="btn" click.bind="displaySummary()">Display summary</button>
+            </div>
+
+           <p>Summary:</p>
+            <pre>
+                
+                I'm ${person.name} . I'm a ${person.age} years old ${person.gender}. 
+                Currently I'm <span text.bind="person.employeed ? 'employeed':'unemployeed'"></span>. <span visible.bind="person.employeed"> My current workplace is ${person.employer} 
+                
+            </pre>
+
+                <p>1. Go to <strong>app</strong> folder and create a pair of files(MyApp.html and MyApp.ts).</p>
+                
+                <p>
+                    <strong>MyApp.ts </strong>:
+                    <pre>
+                   export default class MyApp{
+                        title:string = 'Hello Guest';
+                        
+                        person:any = {
+                            name:'John',
+                            age:22,
+                            gender:'male',
+                            employeed:true,
+                            employer:'BigCorp Company'
+                        }
+
+                        genders:Array<string> = ['male','female'];
+
+                        <var>displaySummary</var>(){
+                            <var>let</var> message = `I'm $<span></span>{this.person.name}. I am a $<span></span>{this.person.age} years old $<span></span>{this.person.gender} !`;
+                            alert(message);
+                        }
+                    
+                    }
+                    </pre>
+                    <strong>MyApp.html </strong>:
+                    <pre>
+                    &lt;div&gt;
+                        &lt;h4&gt; ${title}&lt;/h4&gt;
+                        &lt;div class=&quot;form-group&quot;&gt;
+                            &lt;label for=&quot;name&quot; class=&quot;col-sm-2 control-label&quot;&gt;Name&lt;/label&gt;
+                            &lt;div class=&quot;col-sm-10&quot;&gt;
+                                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; value.bind=&quot;person.name&quot; id=&quot;name&quot; placeholder=&quot;name&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;form-group&quot;&gt;
+                            &lt;label for=&quot;age&quot; class=&quot;col-sm-2 control-label&quot;&gt;Age&lt;/label&gt;
+                            &lt;div class=&quot;col-sm-10&quot;&gt;
+                                &lt;input type=&quot;number&quot; class=&quot;form-control&quot; value.bind=&quot;person.age&quot; id=&quot;age&quot; placeholder=&quot;20&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;form-group&quot;&gt;
+                            &lt;label for=&quot;gender&quot; class=&quot;col-sm-2 control-label&quot;&gt;Gender&lt;/label&gt;
+                            &lt;div class=&quot;col-sm-10&quot;&gt;
+                                &lt;select class=&quot;form-control&quot; id=&quot;gender&quot; value.bind=&quot;person.gender&quot; for.bind=&quot;gender of genders&quot;&gt;
+                                    &lt;option value.bind=&quot;gender&quot;&gt;${gender}&lt;/option&gt;                                        
+                                &lt;/select&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;form-group&quot;&gt;
+                            &lt;label for=&quot;empl&quot; class=&quot;col-sm-2 control-label&quot;&gt;Employeed&lt;/label&gt;
+                            &lt;div class=&quot;col-sm-10&quot;&gt;
+                            &lt;div class=&quot;checkbox&quot;&gt;
+                                &lt;label&gt;&lt;input type=&quot;checkbox&quot; checked.bind=&quot;person.employeed&quot; &gt;&lt;span text.bind=&quot;person.employeed ? '(Employeed)':'(Unemployeed)'&quot;&gt;&lt;/span&gt;&lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;form-group&quot; visible.bind=&quot;person.employeed&quot;&gt;
+                            &lt;label for=&quot;emply&quot; class=&quot;col-sm-2 control-label&quot;&gt;Employer&lt;/label&gt;
+                            &lt;div class=&quot;col-sm-10&quot;&gt;
+                                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; value.bind=&quot;person.employer&quot; id=&quot;emply&quot; placeholder=&quot;employer&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;form-group&quot;&gt;
+                            &lt;button class=&quot;btn&quot; click.bind=&quot;displaySummary()&quot;&gt;Display summary&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    </pre>
+                </p>
+                <p>2. Go to <strong>index.html</strong> and select the created TypeScript file as the start-up page (MyApp.ts).
+                    <pre>
+                        &lt;!DOCTYPE html&gt;
+                            &lt;html lang=&quot;en&quot;&gt;
+                            &lt;head&gt;
+                            &lt;meta charset=&quot;UTF-8&quot;&gt;
+                            &lt;title&gt;Welcome to Typy !&lt;/title&gt;
+                            &lt;link rel=&quot;stylesheet&quot; href=&quot;jspm_packages/github/twbs/bootstrap@3.3.6/css/bootstrap.min.css&quot;&gt;  
+                            &lt;script src=&quot;jspm_packages/system.js&quot;&gt;&lt;/script&gt;
+                            &lt;script src=&quot;config.js&quot;&gt;&lt;/script&gt;
+                            &lt;script&gt;                                    
+                                <strong>System.import('lib/Application.ts').then(function(app){      
+                                app.Application.startUp('../app/MyApp')
+                                });</strong>
+                            &lt;/script&gt;
+                            &lt;/head&gt;
+                            &lt;body&gt;
+                            &lt;div id=&quot;main-host&quot; class=&quot;container&quot;&gt;     
+                            &lt;/div&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                    </pre>   
+                    </p>              
+            </div>
+    </div>
+
+    <div class="panel panel-info">
+            <div class="panel-heading"><strong>Contributors</strong></div>
+            <div class="panel-body">
+                <p><a href="https://github.com/rzvpopescu" target="_blank"> Razvan </a></p>
+                <p><a href="https://github.com/zsee" target="_blank"> Zsolt </a></p>                
+            </div>
+    </div>
+
+    </div>
+</div>

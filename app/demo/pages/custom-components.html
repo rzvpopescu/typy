@@ -1,0 +1,79 @@
+<import from="app/demo/pages/components/text-input"></import>
+
+<div>
+    <h4>${title}</h4>
+    <br>
+    <div class="row-fluid">        
+        <div class="panel panel-info">
+            
+            <div class="panel-heading"><strong>Custom component decorator</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>@customComponent('name') </var></strong></p>
+
+                <p class="bg-info"><strong>This is a custom component </strong></p>
+
+                <text-input></text-input>                
+            </div>
+            <div class="panel-footer">
+                Component ViewModel :
+                <pre>
+                    import {customComponent} from 'CustomComponent';
+
+                    @customComponent('text-input')
+                    export default class TextInput{    
+                        
+                    }
+
+                </pre>
+
+                Component View:
+                <pre>
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label for=&quot;name&quot; class=&quot;col-sm-2 control-label&quot;&gt;Name&lt;/label&gt;
+                        &lt;div class=&quot;col-sm-10&quot;&gt;
+                        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;name&quot; placeholder=&quot;name&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </pre>
+                <hr/>
+
+                 Parent page View :
+                <pre>
+                    &lt;import from=&quot;app/demo/pages/components/text-input&quot;&gt;&lt;/import&gt;
+                    ....
+                    &lt;text-input&gt;&lt;/text-input&gt;
+                </pre>
+            </div>
+        </div>
+
+                <div class="panel panel-info">
+            
+            <div class="panel-heading"><strong>Component binding</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>component.bind="pat/to/the/component"</var></strong></p>
+
+                <p class="bg-info"><strong>This is a custom component loaded with component.bind  </strong></p>
+
+                <div component.bind="app/demo/pages/components/text-input"></div>          
+            </div>
+            <div class="panel-footer">
+               
+                Component View:
+                <pre>
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label for=&quot;name&quot; class=&quot;col-sm-2 control-label&quot;&gt;Name&lt;/label&gt;
+                        &lt;div class=&quot;col-sm-10&quot;&gt;
+                        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;name&quot; placeholder=&quot;name&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </pre>
+                <hr/>
+
+                 Parent page View :
+                <pre>
+                    &lt;div component.bind=&quot;app/demo/pages/components/text-input&quot;&gt;&lt;/div&gt;    
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>

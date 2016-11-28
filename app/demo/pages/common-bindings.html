@@ -1,0 +1,485 @@
+<div>
+    <h4>${title}</h4>
+    <br>
+    <div class="row-fluid">        
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong> Value binding </strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>value.bind='someProperty'</var></strong></p>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name :</label>
+                    <div class="col-sm-4">
+                        <input type="text" value.bind="name" class="form-control" id="name" placeholder="Your name">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                ViewModel :
+                <pre>
+                    export default class MyPage{
+                        <var>name</var>:String = 'John'; 
+                    }
+                </pre>
+
+                View:
+                <pre>
+                    &lt;input type=&quot;text&quot; value.bind=&quot;name&quot; class=&quot;form-control&quot; id=&quot;name&quot; placeholder=&quot;Yourname&quot;&gt;
+                </pre>
+
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong> Text binding </strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>text.bind='someProperty'</var></strong></p>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name :</label>
+                    <div class="col-sm-4">
+                        <input type="text" value.bind="name" class="form-control" id="name" placeholder="Your name">
+                    </div>
+                </div>
+                <br/>
+                <span>
+                    Hello <span text.bind="name"></span> ! Have a nice day !
+                </span>
+            </div>
+            <div class="panel-footer">
+                ViewModel :
+                <pre>
+                    export default class MyPage{
+                        <var>name</var>:String = 'John'; 
+                    }
+                </pre>
+
+                View:
+                <pre>
+                    &lt;input type=&quot;text&quot; value.bind=&quot;name&quot; class=&quot;form-control&quot; id=&quot;name&quot; placeholder=&quot;Yourname&quot;&gt;
+                    &lt;span&gt;
+                        Hello &lt;span text.bind=&quot;name&quot;&gt;&lt;/span&gt; ! Have a nice day !
+                    &lt;/span&gt;
+                </pre>
+
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Interpolation binding</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : An interpolated property has value <var>${<var>someProperty</var>}</var></strong></p>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name :</label>
+                    <div class="col-sm-4">
+                        <input type="text" value.bind="name" class="form-control" id="name" placeholder="Your name">
+                    </div>
+                </div>
+                <br>
+                <span>
+                    Hello ${name} ! Have a nice day !
+                </span>
+            </div>
+            <div class="panel-footer">
+                 ViewModel :
+                <pre>
+                    export default class MyPage{
+                        <var>name</var>:String = 'John'; 
+                    }
+                </pre>
+
+                View:
+                <pre>
+                    &lt;input type=&quot;text&quot; value.bind=&quot;name&quot; class=&quot;form-control&quot; id=&quot;name&quot; placeholder=&quot;Yourname&quot;&gt;
+                    &lt;span&gt;
+                         Hello ${<var>name</var>} ! Have a nice day !
+                    &lt;/span&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Click binding </strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>click.bind='someFunction()'</var></strong></p>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name :</label>
+                    <div class="col-sm-4">
+                        <input type="text" value.bind="name" class="form-control" id="name" placeholder="Your name">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn" click.bind="displayGreetings()">Display greeting</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                ViewModel :
+                <pre>
+                    export default class MyPage{
+                        <var>name</var>:String = 'John'; 
+                        <var>displayGreetings()</var>{
+                            alert(`Hello ${<var>this.name</var>} ! Welcome !`);
+                        }
+                    }
+                </pre>
+
+                View:
+                <pre>
+                    &lt;input type=&quot;text&quot; value.bind=&quot;name&quot; class=&quot;form-control&quot; id=&quot;name&quot; placeholder=&quot;Yourname&quot;&gt;
+                    &lt;button class=&quot;btn&quot; click.bind=&quot;displayGreetings()&quot;&gt;Display greeting&lt;/button&gt;
+                </pre>
+
+            </div>
+        </div>
+      
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>For binding - Basic</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>for.bind='item of items'</var></strong></p>
+                Persons:
+                <ul for.bind="person of persons">
+                    <li>${person}</li>
+                </ul>
+                 <div class="col-sm-2">
+                    <input type="text"  class="form-control" value.bind="newPersonName" id="newPersonName" placeholder="New person name">
+                </div>
+                 <div class="col-sm-2">
+                    <button class="btn" click.bind="addPerson()">Add person</button>
+                </div>
+            </div>
+            <div class="panel-footer">                
+                    ViewModel :
+                    <pre>
+                        export default class MyPage{
+                            <var>persons</var>:Array<String> =  ['John','Marry','Agnes','Edward'];
+                            <var>newPersonName</var>:string;
+                            <var>addPerson()</var>{
+                                this.<var>persons</var>.push(this.<var>newPersonName</var>);
+                            }
+                        }
+                    </pre>
+
+                    View:
+                    <pre>
+                           &lt;ul for.bind=&quot;person of persons&quot;&gt;
+                                &lt;li&gt;${<var>person</var>}&lt;/li&gt;
+                           &lt;/ul&gt;
+                    </pre>
+                </div>                
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>For binding - Advanced</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>for.bind='item of items'</var></strong></p>
+                Students:
+                <ul for.bind="student of students">
+                    <li>${student.name} - ${student.age} - <button class="btn" click.bind="parent.deleteStudent(student)">Delete</button></li>
+                </ul>
+                
+                 <div class="col-sm-2">
+                    <button class="btn" click.bind="addStudent()">Add student</button>
+                </div>
+            </div>
+            <div class="panel-footer">                
+                    ViewModel :
+                    <pre>
+                        class Student{
+                            name:String;
+                            age:number;                            
+                            constructor(name:string,age:number) {
+                                this.name = name;
+                                this.age = age;                
+                            }
+                        }
+
+                        export default class MyPage{
+                            students:Array<Student> =  new Array<Student>();
+                            constructor(){
+                                this.populateStudents();
+                            }
+                            populateStudents(){
+                                this.students.push(new Student('John',22));
+                                this.students.push(new Student('Mary',21));
+                                this.students.push(new Student('Agnes',20));
+                                this.students.push(new Student('Edward',24));
+                            }
+                            addStudent(){
+                                this.students.push(new Student(prompt("Introduce name"),parseInt(prompt("Introduce age"))));
+                            }
+                             deleteStudent(student:Student){
+                                this.students.splice(this.students.indexOf(student),1);
+                            }
+                        }
+
+                    </pre>
+
+                    View:
+                    <pre>
+                          &lt;ul for.bind=&quot;student of students&quot;&gt;
+                                &lt;li&gt;${<var>student.name</var>} - ${<var>student.age</var>} - &lt;button class=&quot;btn&quot; click.bind=&quot;parent.deleteStudent(student)&quot;&gt;Delete&lt;/button&gt;&lt;/li&gt;
+                          &lt;/ul&gt;
+                          &lt;button class=&quot;btn&quot; click.bind=&quot;addStudent()&quot;&gt;Add student&lt;/button&gt;
+                    </pre>
+                </div>                
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Select binding </strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>for.bind='item of items'</var></strong></p>
+                 Students : 
+                 <select class="form-control" id="persons" value.bind="selectedPerson" for.bind="student of students">
+                    <option value.bind="student" text.bind="student.name"></option>                                        
+                </select>   
+                
+                    <button class="btn" click.bind="addStudent()">Add student</button>
+                
+            </div>
+            <div class="panel-footer">                
+                    ViewModel :
+                    <pre>
+                        class Student{
+                            name:String;
+                            age:number;                            
+                            constructor(name:string,age:number) {
+                                this.name = name;
+                                this.age = age;                
+                            }
+                        }
+
+                        export default class MyPage{
+                            students:Array<Student> =  new Array<Student>();
+                            constructor(){
+                                this.populateStudents();
+                            }
+                            populateStudents(){
+                                this.students.push(new Student('John',22));
+                                this.students.push(new Student('Mary',21));
+                                this.students.push(new Student('Agnes',20));
+                                this.students.push(new Student('Edward',24));
+                            }
+                            addStudent(){
+                                this.students.push(new Student(prompt("Introduce name"),parseInt(prompt("Introduce age"))));
+                            }
+                             deleteStudent(student:Student){
+                                this.students.splice(this.students.indexOf(student),1);
+                            }
+                        }
+
+                    </pre>
+
+                    View:
+                    <pre>
+                         &lt;select class=&quot;form-control&quot; id=&quot;persons&quot;  for.bind=&quot;student of students&quot;&gt;
+                            &lt;option value.bind=&quot;student&quot; text.bind=&quot;student.name&quot;&gt;&lt;/option&gt;                                        
+                         &lt;/select&gt;   
+                         &lt;button class=&quot;btn&quot; click.bind=&quot;addStudent()&quot;&gt;Add student&lt;/button&gt;
+                    </pre>
+                </div> 
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Visible binding</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>visible.bind='someCondition'</var></strong></p>
+                <div visible.bind="isVisible">
+                    I am visible !
+                </div>    
+                <button click.bind="show()" visible.bind="isVisible == false">Show</button>
+                <button click.bind="hide()" visible.bind="isVisible">Hide</button>
+
+            </div>
+            <div class="panel-footer">
+                ViewModel:
+                <pre>
+                    export default class MyPage{
+
+                    isVisible:boolean =  false;
+                    
+                    show(){
+                            this.isVisible =  true;
+                        }
+                        hide(){
+                            this.isVisible =  false;
+                        }
+                    }
+                </pre>
+                View:
+                <pre>
+                &lt;div visible.bind=&quot;isVisible&quot;&gt;
+                    I am visible !
+                &lt;/div&gt;    
+                &lt;button click.bind=&quot;show()&quot; visible.bind=&quot;isVisible == false&quot;&gt;Show&lt;/button&gt;
+                &lt;button click.bind=&quot;hide()&quot; visible.bind=&quot;isVisible&quot;&gt;Hide&lt;/button&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>If/IfNot binding</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>if.bind='someCondition'</var></strong></p>
+                <p class="bg-success"><strong>Syntax : <var>ifnot.bind='someCondition'</var></strong></p>
+
+                <div if.bind="canRender">
+                    <span>[1] I'm rendered when 'canRender' flag is "true".</span>
+                </div>
+                <div ifnot.bind="canRender">
+                    <span>[2] I'm rendered when 'canRender' flag is "false".</span>
+                </div>
+                <button click.bind="changeRender()">Toggle 'canRender'</button>
+            </div>
+            <div class="panel-footer">
+                ViewModel:
+                <pre>
+                    export default class MyPage{
+
+                    canRender:boolean =  false;
+                    changeRender(){
+                            this.canRender = !this.canRender;
+                        }
+                    }
+                </pre>
+                View:
+                <pre>
+                &lt;div if.bind=&quot;canRender&quot;&gt;
+                    &lt;span&gt;I'm rendered when 'canRender' is &quot;true&quot;.&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div ifnot.bind=&quot;canRender&quot;&gt;
+                    &lt;span&gt;I'm rendered when 'canRender' is &quot;false&quot;.&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;button click.bind=&quot;changeRender()&quot;&gt;Toggle 'canRender'&lt;/button&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Checked binding</strong></div>            
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>checked.bind='someCondition'</var></strong></p>
+                 <div if.bind="canRender">
+                    <span>[1] I'm rendered when 'canRender' flag is "true".</span>
+                </div>
+                <div ifnot.bind="canRender">
+                    <span>[2] I'm rendered when 'canRender' flag is "false".</span>
+                </div>
+                 <input type="checkbox" click.bind='changeRender()' checked.bind='canRender'> Change canRender(${canRender})
+            </div>
+            <div class="panel-footer">
+                ViewModel:
+                <pre>
+                    export default class MyPage{
+
+                    canRender:boolean =  false;
+                    changeRender(){
+                            this.canRender = !this.canRender;
+                        }
+                    }
+                </pre>
+                View:
+                <pre>
+                &lt;div if.bind=&quot;canRender&quot;&gt;
+                    &lt;span&gt;[1] I'm rendered when 'canRender' flag is &quot;true&quot;.&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div ifnot.bind=&quot;canRender&quot;&gt;
+                    &lt;span&gt;[2] I'm rendered when 'canRender' flag is &quot;false&quot;.&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;input type=&quot;checkbox&quot; click.bind='changeRender()' checked.bind='canRender'&gt; Change canRender(${canRender})
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Class binding</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>class.bind='someExpression'</var></strong></p>
+                 <div class="alert" class.bind="isSuccess ? 'alert-success':'alert-danger'" role="alert">
+                     <span if.bind="isSuccess"><p>Success</p></span>
+                     <span ifnot.bind="isSuccess"><p>Failure</p></span>
+                 </div>
+                 <input type="checkbox" click.bind="toggleSuccess()" checked.bind="isSuccess"> Success ?    
+            </div>
+            <div class="panel-footer">
+                ViewModel:
+                <pre>
+                    export default class MyPage{
+
+                        isSuccess:boolean =  false;
+                        toggleSuccess(){
+                            this.isSuccess = !this.isSuccess;
+                        }
+                    }
+                </pre>
+                <pre>
+                &lt;div class=&quot;alert&quot; class.bind=&quot;isSuccess ? 'alert-success':'alert-danger'&quot; role=&quot;alert&quot;&gt;
+                     &lt;span if.bind=&quot;isSuccess&quot;&gt;&lt;p&gt;Success&lt;/p&gt;&lt;/span&gt;
+                     &lt;span ifnot.bind=&quot;isSuccess&quot;&gt;&lt;p&gt;Failure&lt;/p&gt;&lt;/span&gt;
+                 &lt;/div&gt;
+                 &lt;input type=&quot;checkbox&quot; click.bind=&quot;toggleSuccess()&quot; checked.bind=&quot;isSuccess&quot;&gt; Success ?  
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>HREF binding</strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>href.bind='someProperty'</var></strong></p>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name :</label>
+                    <div class="col-sm-4">
+                        <input type="text" value.bind="httpAddress" class="form-control" id="webAddress" placeholder="Type a web address">
+                    </div>
+                </div>
+                <br/>
+                <a href.bind="httpAddress" visible.bind="httpAddress!=undefined ">Click here to go to ${httpAddress}</a>
+            </div>
+            <div class="panel-footer">
+                ViewModel:
+                <pre>
+                    export default class MyPage{
+                        httpAddress:string;
+                    }
+                </pre>
+                View:
+                <pre>
+                &lt;label for=&quot;name&quot; class=&quot;col-sm-2 control-label&quot;&gt;Name :&lt;/label&gt;
+                    &lt;div class=&quot;col-sm-4&quot;&gt;
+                        &lt;input type=&quot;text&quot; value.bind=&quot;httpAddress&quot; class=&quot;form-control&quot; id=&quot;webAddress&quot; placeholder=&quot;Type a web address&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;br/&gt;
+                &lt;a href.bind=&quot;httpAddress&quot; visible.bind=&quot;httpAddress!=undefined &quot;&gt;Click here to go to ${<var>httpAddress<var>}&lt;/a&gt;
+                </pre>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Viewport binding<strong></div>
+            <div class="panel-body">
+                <p class="bg-success"><strong>Syntax : <var>viewport.bind='routerInstance'</var></strong></p>
+            </div>
+            <div class="panel-footer">
+                ViewModel:
+                <pre>
+                    import {Router,Route} from 'Router';
+                    export default class MyPage{
+
+                        router:Router;
+
+                        constructor(){
+                            this.router =  new Router();
+                            this.router.addRoute(new Route(['','home'],'app/path/to/home','Home'));
+                            this.router.addRoute(new Route(['about'],'app/path/to/about','About'));
+                        }
+                    }
+                </pre>
+                View:
+                <pre>
+                    &lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;
+                    &lt;a href=&quot;#about&quot;&gt;About&lt;/a&gt;
+                    &lt;div view-port.bind='router'&gt;&lt;/div&gt;
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
