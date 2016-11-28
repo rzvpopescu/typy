@@ -33,3 +33,6 @@ You can see **Typy** in action at the url : http://typy.popescurazvan.c9users.io
 ###Contributors
 >- <a href="https://github.com/rzvpopescu/" target="_blank">Razvan</a>
 >- <a href="https://github.com/zsee/" target="_blank">Zsolt</a>
+
+###History
+**Typy** is a branch of an old project called TypeScript Simple framework that can be found at this repo : https://github.com/rzvpopescu/tssfw . That repo is no longer maintained.
