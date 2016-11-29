@@ -16,7 +16,7 @@ You can see in action concepts like : HTML declarative bindings, Custom HTML Ele
 >- http-server -p 8080 -o
 
 ###Demo & Documentation
-You can see **Typy** in action at the url : http://typy.popescurazvan.c9users.io/
+You can see **Typy** in action at the url : http://typyapp.azurewebsites.net/
 
 
 ### Features
