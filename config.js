@@ -4,7 +4,7 @@ System.config({
   transpiler: "typescript",
   paths: {
     "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*"    
+    "npm:*": "jspm_packages/npm/*"
   },
 
   packages: {
@@ -17,9 +17,9 @@ System.config({
   },
 
   map: {
-    "Router":"lib/Router/Router",
-    "CustomComponent":"lib/Bindings/ComponentBindings/CustomComponent",
-    "Injector":"lib/Injector",
+    "CustomComponent": "lib/Bindings/ComponentBindings/CustomComponent",
+    "Injector": "lib/Injector",
+    "Router": "lib/Router/Router",
     "text": "github:systemjs/plugin-text@0.0.8",
     "twbs/bootstrap": "github:twbs/bootstrap@3.3.6",
     "typescript": "npm:typescript@1.8.10",

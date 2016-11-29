@@ -1,9 +1,9 @@
 {
   "name": "code",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "",  
   "dependencies": {
+    "express": "^4.13.3",
     "http-server": "^0.9.0",
     "jspm": "^0.16.48",
     "systemjs": "^0.19.31",
@@ -11,6 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "install":"jspm",
+    "start": "http-server -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
