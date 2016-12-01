@@ -1,7 +1,10 @@
 <div>
     <h4>${title}</h4>
     <br>
-    <div class="row-fluid">        
+    <div class="row-fluid">   
+        <ul for.bind="param of parameters">
+            <li>${param.name} = ${param.value}</li>
+        </ul>
         <div class="panel panel-info">
             <div class="panel-heading"><strong> Router </strong></div>
             <div class="panel-body">                
@@ -18,6 +21,7 @@
                             this.router =  new Router();
                             this.router.addRoute(new Route(['','home'],'app/path/to/home','Home'));
                             this.router.addRoute(new Route(['about'],'app/path/to/about','About'));
+                            this.router.addRoute(new Route(['params/:param1/:param2'], 'app/path/to/params', 'Route with parameters'));
                         }
                     }
                 </pre>
