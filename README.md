@@ -22,7 +22,7 @@ You can see **Typy** in action at the url : http://typyapp.azurewebsites.net/
 
 
 ### Features
->- Declarative bindings ( value.bind, text.bind, click.bind, checked.bind , interpolation binding)
+>- Declarative bindings ( value.bind, text.bind, click.bind, checked.bind, interpolation binding)
 >- Routing
 >- Custom elements 
 >- Dependency Injection
@@ -37,4 +37,4 @@ You can see **Typy** in action at the url : http://typyapp.azurewebsites.net/
 >- <a href="https://github.com/zsee/" target="_blank">Zsolt</a>
 
 ###History
-**Typy** is a branch of an old project called TypeScript Simple framework that can be found at this repo : https://github.com/rzvpopescu/tssfw . That repo is no longer maintained.
+**Typy** is a branch of an old project called TypeScript Simple Framework, who can be found at this repo : https://github.com/rzvpopescu/tssfw . That repo is no longer maintained.
