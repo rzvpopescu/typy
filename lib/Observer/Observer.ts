@@ -1,4 +1,5 @@
 import {MetaHelper} from '../MetaHelper';
+import {ExpressionsHelper, CompiledFunction} from '../Bindings/ExpressionsHelper';
 
 /**
  * Observer mechanism 
@@ -26,7 +27,7 @@ class ObserverSubscription {
 
     instance: any;
 
-    evaluator: Function;
+    evaluator: CompiledFunction;
 
     /**
      * Creates an instance of ObserverSubscription.
@@ -148,7 +149,7 @@ class ObserverSubscription {
     getExpressionValue(expression: string, instance: any): any {
 
         if (!this.evaluator)
-            this.evaluator = new Function("_", "return _." + expression.trim())
+            this.evaluator = ExpressionsHelper.compileExpression(expression);
 
         let evaluatedExpression = this.evaluator(instance);
 

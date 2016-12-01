@@ -1,7 +1,8 @@
-import {IBinder} from '../IBinder';
-import {MetaHelper} from '../../MetaHelper';
+import { IBinder } from '../IBinder';
+import { MetaHelper } from '../../MetaHelper';
+import { ExpressionsHelper, CompiledSetterFunction } from '../ExpressionsHelper';
 
-const BINDERS:string = 'binders';
+const BINDERS: string = 'binders';
 
 export abstract class PropertyBinder implements IBinder {
 
@@ -9,36 +10,36 @@ export abstract class PropertyBinder implements IBinder {
 
     bind(viewModel: any, view: HTMLElement): Promise<boolean> {
 
-      this.applyBindings(viewModel,view);
+        this.applyBindings(viewModel, view);
 
-       let elementsWithBindigs = view.querySelectorAll(this.bindingQuerySelector);
+        let elementsWithBindigs = view.querySelectorAll(this.bindingQuerySelector);
 
         Array.prototype.forEach.call(elementsWithBindigs, (element: HTMLElement) => {
 
-            this.applyBindings(viewModel,element);
-            
+            this.applyBindings(viewModel, element);
+
         });
 
         return Promise.resolve(true);
     }
 
-    private applyBindings(viewModel:any,element:HTMLElement):void{
+    private applyBindings(viewModel: any, element: HTMLElement): void {
 
         let expression = this.getBindingExpression(element);
-        
-        if(expression){
+
+        if (expression) {
 
             this.updateBindersCollectionProperty(element);
 
-            this.elementBind(element,viewModel,expression.trim());
+            this.elementBind(element, viewModel, expression.trim());
 
         }
 
     }
 
-    elementBind(element:HTMLElement,viewModel:any,expression:string):void{}
+    elementBind(element: HTMLElement, viewModel: any, expression: string): void { }
 
-    unbind(){
+    unbind() {
 
         return Promise.resolve(true);
 
@@ -58,36 +59,29 @@ export abstract class PropertyBinder implements IBinder {
 
     }
 
-    getBindingExpression(element:HTMLElement):string{
-        
+    getBindingExpression(element: HTMLElement): string {
+
         return element.getAttribute(this.bindingAttribute);
 
     }
 
     setExpressionValue(expression: string, viewModel: any, value: any) {
 
-        if(typeof value === 'string'){
+        const setterFunction = ExpressionsHelper.compileSetterExpression(expression);
 
-            return new Function("_", " _." + expression + '="'+value+'"')(viewModel);            
-
-        }
-        else{
-
-            return new Function("_",'__', " _." + expression + '= __')(viewModel,value);
-
-        }
+        setterFunction(viewModel, value);
     }
 
 
-    updateBindersCollectionProperty(bindedElement:any){
+    updateBindersCollectionProperty(bindedElement: any) {
 
-        let bindersCollection = MetaHelper.getMetaProperty(bindedElement,BINDERS);
+        let bindersCollection = MetaHelper.getMetaProperty(bindedElement, BINDERS);
 
-        if(!bindersCollection){
+        if (!bindersCollection) {
 
-            bindersCollection =  new Map<string,PropertyBinder>();
+            bindersCollection = new Map<string, PropertyBinder>();
 
-            MetaHelper.setMetaProperty(bindedElement,BINDERS,bindersCollection);            
+            MetaHelper.setMetaProperty(bindedElement, BINDERS, bindersCollection);
 
         }
 
@@ -95,11 +89,11 @@ export abstract class PropertyBinder implements IBinder {
 
     }
 
-    getBinder(bindedElement:any,bindingAttribute:string){
+    getBinder(bindedElement: any, bindingAttribute: string) {
 
-        let bindersCollection = MetaHelper.getMetaProperty(bindedElement,BINDERS);
+        let bindersCollection = MetaHelper.getMetaProperty(bindedElement, BINDERS);
 
-        if(bindersCollection){
+        if (bindersCollection) {
 
             return bindersCollection[bindingAttribute];
 
@@ -108,5 +102,5 @@ export abstract class PropertyBinder implements IBinder {
         return undefined;
 
     }
-        
+
 }

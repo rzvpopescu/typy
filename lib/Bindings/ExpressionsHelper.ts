@@ -1,4 +1,12 @@
 
+export interface CompiledFunction {
+    (viewModel: any, context?: any): any;
+}
+
+export interface CompiledSetterFunction {
+    (viewModel: any, valueToSet: any): any;
+}
+
 /**
  * Helper for expression manipulation 
  * 
@@ -9,49 +17,48 @@ export class ExpressionsHelper {
     private static compiledFunctions: Map<string, Function> = new Map<string, Function>();
 
     /**
-     * Parses a string function and returns the name,and parameters
-     * 
-     * @static
-     * @param {string} functionString Function string
-     * @returns {string[]} Elements of that function
-     */
-    static getFunctionItems(functionString: string): string[] {
-
-        functionString = functionString.replace(';', '');
-
-        return functionString.split(/[(),]/g).filter(Boolean);
-
-    }
-
-    /**
-     * 
-     * 
-     * @static
+     * Compile the expression, and evaluate it for the given viewModel
      * @param {string} expression
      * @param {*} viewModel
-     * @returns {*}
      */
     static getEvaluatedExpression(expression: string, viewModel: any): any {
 
-        let evaluatedExpression = ExpressionsHelper.getCompiledFunction("_", "return _." + expression)(viewModel);
+        const expressionFunction = ExpressionsHelper.compileExpression(expression);
 
-        return evaluatedExpression;
+        const result = expressionFunction(viewModel);
+
+        return result;
 
     }
 
     /**
-     * 
-     * 
-     * @static
-     * @param {string} expression
-     * @param {*} viewModel
-     * @returns
+     * Compile the given expression.
+     * The resulting function will have two parameters: the viewModel and the context.
+     * The context parameter is optional
+     *  and it can be used to add additional variables which can be used in the function
+     * eg. for an event the context could be { event: new Event() }
      */
-    static getEvaluatedFunctionExpression(expression: string, viewModel: any) {
+    static compileExpression(expression: string): CompiledFunction {
 
-        let expressionFunction = ExpressionsHelper.getCompiledFunction("_", "event", "with(_) return _." + expression);
+        let expressionFunction = ExpressionsHelper.getCompiledFunction("viewModel", "context",
+            "context = context || {};"
+            + "with(context) with(viewModel) return "
+            + "viewModel." + expression);
 
-        return expressionFunction;
+        return expressionFunction as CompiledFunction;
+
+    }
+
+    /**
+     * Compiles an expression which sets a value on the viewModel
+     * See compileExpression() for details.
+     */
+    static compileSetterExpression(expression: string): CompiledSetterFunction {
+
+        let fn = ExpressionsHelper.getCompiledFunction("viewModel", "value",
+            "return viewModel." + expression + " = value");
+
+        return fn as CompiledSetterFunction;
 
     }
 
@@ -103,7 +110,7 @@ export class ExpressionsHelper {
 
     }
 
-    private static getCompiledFunction(...args:string[]) {
+    private static getCompiledFunction(...args: string[]) {
         var key = args.join("_");
         var fn = ExpressionsHelper.compiledFunctions.get(key);
         if (!fn) {
