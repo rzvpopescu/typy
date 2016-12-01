@@ -27,12 +27,7 @@ export class Component{
      * @type {Array<Component>}
      */
     public components:Array<Component>;
-<<<<<<< HEAD
-    
-    
-=======
-        
->>>>>>> b28f636b5a68a55592dbc7de28eb77bd4a442e31
+
     /**
      * Creates an instance of Component.
      * 
@@ -43,12 +38,7 @@ export class Component{
     constructor(viewModel:any,view:HTMLElement,components:Array<Component>) {      
         this.viewModel = viewModel;
         this.view = view;
-<<<<<<< HEAD
         this.components = components;
-        
-=======
-        this.components = components;        
->>>>>>> b28f636b5a68a55592dbc7de28eb77bd4a442e31
     }
     
 }

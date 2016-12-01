@@ -1,8 +1,8 @@
-import {PropertyBinder} from './PropertyBinder';
-import {ExpressionsHelper} from '../ExpressionsHelper';
-import {HtmlHelper} from '../HtmlHelper';
-import {ObserverEngine} from '../../Observer/Observer';
-import {ComponentBinder} from '../ComponentBindings/ComponentBinder';
+import { PropertyBinder } from './PropertyBinder';
+import { ExpressionsHelper } from '../ExpressionsHelper';
+import { HtmlHelper } from '../HtmlHelper';
+import { ObserverEngine } from '../../Observer/Observer';
+import { ComponentBinder } from '../ComponentBindings/ComponentBinder';
 
 export class IfBinder extends PropertyBinder {
 
@@ -10,14 +10,14 @@ export class IfBinder extends PropertyBinder {
 
     elementBind(element: HTMLElement, viewModel: any, expression: string): void {
 
-           var innerElements: HTMLElement[] = Array.prototype.map.call(element.children, (child: HTMLElement) => {
+        var innerElements: HTMLElement[] = Array.prototype.map.call(element.children, (child: HTMLElement) => {
 
             return child.cloneNode(true);
 
         });
 
- 
-          ObserverEngine.observeExpression(expression, viewModel, (value: any, oldValue: any) => {
+
+        ObserverEngine.observeExpression(expression, viewModel, (value: any, oldValue: any) => {
 
             this.applyBinding(element, innerElements, value);
 
@@ -30,12 +30,12 @@ export class IfBinder extends PropertyBinder {
 
         HtmlHelper.clearChildrens(element);
 
-        if(this.shouldAddInnerElements(value)){            
+        if (this.shouldAddInnerElements(value)) {
 
             Array.prototype.forEach.call(innerElements, (child: HTMLElement) => {
 
                 let childNode = child.cloneNode(true);
-                
+
                 let binder = new ComponentBinder();
 
                 binder.executeBindings(childNode as HTMLElement).then(result => {
@@ -48,7 +48,7 @@ export class IfBinder extends PropertyBinder {
 
                         });
                     }
-                    else{
+                    else {
 
                         element.appendChild(childNode);
 
@@ -69,10 +69,10 @@ export class IfBinder extends PropertyBinder {
      * @param {boolean} value
      * @returns {boolean}
      */
-    shouldAddInnerElements(value:boolean):boolean{
+    shouldAddInnerElements(value: boolean): boolean {
 
         return value;
 
     }
-       
+
 }
