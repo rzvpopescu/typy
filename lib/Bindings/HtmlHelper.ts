@@ -5,8 +5,8 @@
  * @export
  * @class HtmlEvaluator
  */
-export class HtmlHelper{
-    
+export class HtmlHelper {
+
     /**
      * Creates a HTML Element from a text source
      * 
@@ -14,12 +14,12 @@ export class HtmlHelper{
      * @param {string} elementSource The source of the Element
      * @returns {HTMLElement} The created HTML Element
      */
-    static createHTMLElement(elementSource:string):HTMLElement{                  
+    static createHTMLElement(elementSource: string): HTMLElement {
         let wrapper = document.createElement('component');
-        wrapper.innerHTML = elementSource;
-        return wrapper as HTMLElement;    
+        wrapper.innerHTML = elementSource.trim();
+        return (wrapper.childNodes.length === 1 ? wrapper.childNodes[0] : wrapper) as HTMLElement;
     }
-    
+
 
 
     /**
@@ -28,8 +28,8 @@ export class HtmlHelper{
      * @static
      * @returns {HTMLElement}
      */
-    static createEmptyElement(type?:string):HTMLElement{        
-        type = type || 'div';        
+    static createEmptyElement(type?: string): HTMLElement {
+        type = type || 'div';
         let wrapper = document.createElement(type);
         return wrapper;
     }
@@ -41,7 +41,7 @@ export class HtmlHelper{
      * @param {HTMLElement} parentElement
      * @param {HTMLElement} childElement
      */
-    static addHtmlElement(parentElement:HTMLElement,childElement:HTMLElement){
+    static addHtmlElement(parentElement: HTMLElement, childElement: HTMLElement) {
 
         //??
 
@@ -53,15 +53,15 @@ export class HtmlHelper{
      * @static
      * @param {HTMLElement} element
      */
-    static clearChildrens(element:HTMLElement):void{        
-        while(element.firstChild){
+    static clearChildrens(element: HTMLElement): void {
+        while (element.firstChild) {
             element.removeChild(element.firstChild);
         }
     }
 
-    static forEeachChildren(element:HTMLElement,callbackfn:(child:HTMLElement)=>void){        
-        while(element.firstChild){
-            if(callbackfn){
+    static forEeachChildren(element: HTMLElement, callbackfn: (child: HTMLElement) => void) {
+        while (element.firstChild) {
+            if (callbackfn) {
                 callbackfn(<HTMLElement>element.firstChild)
             }
         }
