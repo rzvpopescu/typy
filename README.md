@@ -9,11 +9,13 @@ You can see in action concepts like : HTML declarative bindings, Custom HTML Ele
 ###Installation 
 >- git clone https://github.com/rzvpopescu/typy.git
 >- cd typy
->- jspm install (make sure you have jspm installed, or install it - npm install jspm)
->- npm install typings
->- typings install dt~systemjs --global
->- npm install http-server
+>- npm install
+>- npm start
+
+##Optional
+>- npm install -g jspm typings http-server
 >- http-server -p 8080 -o
+
 
 ###Demo & Documentation
 You can see **Typy** in action at the url : http://typyapp.azurewebsites.net/
