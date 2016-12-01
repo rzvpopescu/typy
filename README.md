@@ -5,14 +5,14 @@
 You can see in action concepts like : HTML declarative bindings, Custom HTML Elements, Routing, Observer, Dirty Checking, Dependency Injection, etc. 
 
 
-
 ###Installation 
+_Minimum_
 >- git clone https://github.com/rzvpopescu/typy.git
 >- cd typy
 >- npm install
 >- npm start
 
-##Optional
+_Optional_
 >- npm install -g jspm typings http-server
 >- http-server -p 8080 -o
 
