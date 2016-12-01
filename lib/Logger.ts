@@ -17,7 +17,7 @@ export class Logger{
      * @param {string} message
      */
     static logError(message:string):void {
-        console.log("%c[Typy] - ## ERRORR ## "+message,Logger.ERROR_COLOR);
+        console.error("%c[Typy] - ## ERRORR ## "+message,Logger.ERROR_COLOR);
     }
 
     /**

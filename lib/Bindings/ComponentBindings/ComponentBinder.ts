@@ -72,7 +72,7 @@ export class ComponentBinder implements IComponentBinder {
     bind(componentPath: string, parentView: HTMLElement, data?: any): Promise<Component> {
         return new Promise<Component>((resolve,reject)=>{
             this.componentBind(parentView, componentPath, data).then((component: Component)=> resolve(component)).catch((err:Error)=>{                 
-                Logger.logDebug(`Could not bind the component at path << ${componentPath} >> . ${err.message} !`);                
+                Logger.logError(`Could not bind the component at path << ${componentPath} >> . ${err.message} !`);                
             });
         });
     }
@@ -191,6 +191,8 @@ export class ComponentBinder implements IComponentBinder {
 
                             // create an HTML element from the html source
                             let view: HTMLElement = HtmlHelper.createHTMLElement(viewSource);
+                            view.setAttribute('data-component-path', componentPath);
+                            view.setAttribute('data-view-path', viewPath);
                             return this.bindViewModel(viewModelInstance, view, targetElement);
                         });
                     });
