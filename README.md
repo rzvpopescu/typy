@@ -18,7 +18,7 @@ _Optional_
 
 
 ###Demo & Documentation
-You can see **Typy** in action at the url : http://typyapp.azurewebsites.net/
+You can see **Typy** in action at the url : https://typyapp.herokuapp.com/
 
 
 ### Features
