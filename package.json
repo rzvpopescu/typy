@@ -2,7 +2,7 @@
   "name": "typy",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {},
+  "dependencies": {"jspm": "^0.16.48"},
   "devDependencies": {
     "http-server": "^0.9.0",
     "typescript": "^2.0.10",
