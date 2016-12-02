@@ -11,7 +11,7 @@
   },
   "scripts": {
     "postinstall": "jspm install",
-    "start": "http-server -p 8080 -o"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
