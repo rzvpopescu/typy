@@ -1,4 +1,4 @@
-<img src="https://github.com/rzvpopescu/typy/blob/master/Typy.PNG?raw=true" alt="Typy" width="70px";/>
+<img src="https://raw.githubusercontent.com/rzvpopescu/typy/master/Typy.PNG" alt="Typy" width="70px";/>
 ###An experimental TypeScript MVVM Framework
 
 **Typy** is an experimental TypeScript MVVM framework, made for education purposes. 
