@@ -1,11 +1,11 @@
 
-###An experimental TypeScript MVVM Framework
+## Experimental TypeScript MVVM Framework
 
 **Typy** is an experimental TypeScript MVVM framework, made for education purposes. 
 You can see in action concepts like : HTML declarative bindings, Custom HTML Elements, Routing, Observer, Dirty Checking, Dependency Injection, etc. 
 
 
-###Installation 
+### Installation 
 _Minimum_
 >- git clone https://github.com/rzvpopescu/typy.git
 >- cd typy
@@ -17,7 +17,7 @@ _Optional_
 >- http-server -p 8080 -o
 
 
-###Demo & Documentation
+### Demo & Documentation
 You can see **Typy** in action at the url : https://typyapp.herokuapp.com/
 
 
@@ -28,13 +28,13 @@ You can see **Typy** in action at the url : https://typyapp.herokuapp.com/
 >- Dependency Injection
 >- Page Lifecycle hooks(canLoad, load, loadComplete, attached, binded, canUnload)
 
-###Dependencies
+### Dependencies
 >- SystemJS ( used as loader)
 >- Bootstrap
 
-###Contributors
+### Contributors
 >- <a href="https://github.com/rzvpopescu/" target="_blank">Razvan</a>
 >- <a href="https://github.com/zsee/" target="_blank">Zsolt</a>
 
-###History
+### History
 **Typy** is a branch of an old project called TypeScript Simple Framework, who can be found at this repo : https://github.com/rzvpopescu/tssfw . That repo is no longer maintained.
